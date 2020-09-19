@@ -8,16 +8,21 @@ import {Avatar,
         Drawer,
         Text,
         Switch,
-        TouchableRipple
+        TouchableRipple,
+        useTheme
         } from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { color } from 'react-native-reanimated';
 import {AsyncStorage} from 'react-native';
+import { AuthContext } from './context';
 
 
 export function DrawerContent(props){
     const [name, setName] = useState('Anurag Goenka')
+    const  {signOut, toggleTheme} = React.useContext(AuthContext)
+    const PaperTheme = useTheme()
+
     // useEffect(() => {
     //     if(AsyncStorage.getItem('name') != null){
     //         setName("GoenkaAnurag")
@@ -25,11 +30,6 @@ export function DrawerContent(props){
     //         setName("AnuragGoenka")
     //     }
     //  }, [name])
-
-    const [isDarkTheme, setDarkTheme] = useState(false);
-    const toggleTheme = () => {
-        setDarkTheme(!isDarkTheme);
-    }
 
     return(
         <View style = {{flex : 1}}>
@@ -39,7 +39,7 @@ export function DrawerContent(props){
                         <View style = {{flexDirection : 'row', marginTop: 15}}>
                             <Avatar.Image 
                                 source = {{
-                                    uri : 'https://lh3.googleusercontent.com/proxy/rsRVX5wdJr51IMWoVxDQRpDW49mxhZiBT0P417O9uWeK7HidTPhtuFIjTfotXmo4ctsyVMTs6c-VdawVN6VGleIFqeZ6pP0dwtrEhu5nvOql49CqCiOVW5iWZPvoGg1j20-e'
+                                    uri : 'https://img.mensxp.com/media/content/2020/May/Sacrifices-Heath-Ledger-Made-To-Become-The-Joker600_5eaff513cf8ce_600x900.jpeg'
                                 }}
                                 size = {50}
                             />
@@ -131,7 +131,7 @@ export function DrawerContent(props){
                             <View style = {styles.preference}>
                                 <Text>Dark Theme</Text>
                                 <View pointerEvents = 'none'>
-                                    <Switch value = {isDarkTheme} />
+                                    <Switch value = {PaperTheme.dark} />
                                 </View>
                             </View>
                         </TouchableRipple>
@@ -148,7 +148,7 @@ export function DrawerContent(props){
                         />
                     )}
                     label = 'Sign Out'
-                    onPress = {() => {}}
+                    onPress = {() => {signOut()}}
                 />
             </Drawer.Section>
         </View>

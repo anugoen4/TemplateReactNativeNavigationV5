@@ -13,7 +13,7 @@ const Splash = ({navigation}) => {
             <View style = {styles.header}>
                 <Animatable.Image 
                     animation = "bounceIn"
-                    duration = "1500"
+                    duration = '1500'
                      source = {{
                         uri : 'https://raw.githubusercontent.com/itzpradip/react-navigation-v5-mix/master/assets/logo.png'
                     }}
